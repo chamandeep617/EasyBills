@@ -14,6 +14,9 @@ import os
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
 
+# Create arrays of known face encodings and their names
+known_face_encodings = []
+
 # Load a sample picture and learn how to recognize it.
 path, dirs, files = next(os.walk("/home/jaspreet/Desktop/images"))
 img_count = len(files)
@@ -22,23 +25,15 @@ for x in range(img_count):
   (globals()["image" + str(x)]) = face_recognition.load_image_file("/home/jaspreet/Desktop/images/"+str(x))
   (globals()["face_encoding" + str(x)]) = face_recognition.face_encodings((globals()["image" + str(x)]))[0]
 
-
-
 #print(face_encoding1)
 # Load a second sample picture and learn how to recognize it.
 #biden_image = face_recognition.load_image_file("/home/jaspreet/Pictures/Webcam/cs.jpg")
 #biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
 
-# Create arrays of known face encodings and their names
+for x in range(img_count):
+    known_face_encodings.append(globals()[("face_encoding")+str(x)])
 
-known_face_encodings = [
-    face_encoding0,
-    face_encoding1
-]
-known_face_names = [
-    "Jaspreet Singh",
-    "Charan"
-]
+#known_face_names = ["A","B" ]
 
 # Initialize some variables
 face_locations = []
