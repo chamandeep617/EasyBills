@@ -1,5 +1,6 @@
 import face_recognition
 import cv2
+import os
 
 # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
 # other example, but it includes some basic performance tweaks to make things run a lot faster:
@@ -14,17 +15,25 @@ import cv2
 video_capture = cv2.VideoCapture(0)
 
 # Load a sample picture and learn how to recognize it.
-obama_image = face_recognition.load_image_file("/home/jaspreet/js/js.jpeg")
-obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
+path, dirs, files = next(os.walk("/home/jaspreet/Desktop/images"))
+img_count = len(files)
+for x in range(img_count):
+  print(x)
+  (globals()["image" + str(x)]) = face_recognition.load_image_file("/home/jaspreet/Desktop/images/"+str(x))
+  (globals()["face_encoding" + str(x)]) = face_recognition.face_encodings((globals()["image" + str(x)]))[0]
 
+
+
+#print(face_encoding1)
 # Load a second sample picture and learn how to recognize it.
-biden_image = face_recognition.load_image_file("/home/jaspreet/Pictures/Webcam/cs.jpg")
-biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
+#biden_image = face_recognition.load_image_file("/home/jaspreet/Pictures/Webcam/cs.jpg")
+#biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
 
 # Create arrays of known face encodings and their names
+
 known_face_encodings = [
-    obama_face_encoding,
-    biden_face_encoding
+    face_encoding0,
+    face_encoding1
 ]
 known_face_names = [
     "Jaspreet Singh",
@@ -62,7 +71,7 @@ while True:
             # If a match was found in known_face_encodings, just use the first one.
             if True in matches:
                 first_match_index = matches.index(True)
-                name = known_face_names[first_match_index]
+                name = str(first_match_index)
 
             face_names.append(name)
 
