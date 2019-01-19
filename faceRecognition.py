@@ -18,11 +18,11 @@ video_capture = cv2.VideoCapture(0)
 known_face_encodings = []
 
 # Load a sample picture and learn how to recognize it.
-path, dirs, files = next(os.walk("/home/jaspreet/Desktop/images"))
+path, dirs, files = next(os.walk("/home/jaspreet/Desktop/EasyBills/images"))
 img_count = len(files)
 for x in range(img_count):
   print(x)
-  (globals()["image" + str(x)]) = face_recognition.load_image_file("/home/jaspreet/Desktop/images/"+str(x))
+  (globals()["image" + str(x)]) = face_recognition.load_image_file("/home/jaspreet/Desktop/EasyBills/images/"+str(x)+".jpg")
   (globals()["face_encoding" + str(x)]) = face_recognition.face_encodings((globals()["image" + str(x)]))[0]
 
 #print(face_encoding1)
