@@ -1,6 +1,7 @@
 import face_recognition
 import cv2
 import os
+import glob
 
 # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
 # other example, but it includes some basic performance tweaks to make things run a lot faster:
@@ -19,21 +20,34 @@ known_face_encodings = []
 
 # Load a sample picture and learn how to recognize it.
 path, dirs, files = next(os.walk("/home/jaspreet/Desktop/EasyBills/images"))
+#print(os.path.exists("/home/el/myfile.txt"))
+
 img_count = len(files)
-for x in range(img_count):
+for x in range(10):
   print(x)
-  (globals()["image" + str(x)]) = face_recognition.load_image_file("/home/jaspreet/Desktop/EasyBills/images/"+str(x)+".jpg")
-  (globals()["face_encoding" + str(x)]) = face_recognition.face_encodings((globals()["image" + str(x)]))[0]
+  if(os.path.exists("/home/jaspreet/Desktop/EasyBills/images/"+str(x)+".jpg")==True):
+    (globals()["image" + str(x)]) = face_recognition.load_image_file("/home/jaspreet/Desktop/EasyBills/images/"+str(x)+".jpg")
+    (globals()["face_encoding" + str(x)]) = face_recognition.face_encodings((globals()["image" + str(x)]))[0]
 
 #print(face_encoding1)
 # Load a second sample picture and learn how to recognize it.
 #biden_image = face_recognition.load_image_file("/home/jaspreet/Pictures/Webcam/cs.jpg")
 #biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
 
-for x in range(img_count):
-    known_face_encodings.append(globals()[("face_encoding")+str(x)])
+for x in range(10):
+  if(os.path.exists("/home/jaspreet/Desktop/EasyBills/images/"+str(x)+".jpg")==True):
+     known_face_encodings.append(globals()[("face_encoding")+str(x)])
 
 #known_face_names = ["A","B" ]
+known_face_names = []
+
+filenames = glob.glob("/home/jaspreet/Desktop/EasyBills/images" + "/*.jpg") #read all files in the path mentioned
+for x in filenames:
+  x = x.replace("/home/jaspreet/Desktop/EasyBills/images/", "")
+  x = x.replace(".jpg", "")
+  known_face_names.append(x)
+
+
 
 # Initialize some variables
 face_locations = []
@@ -66,7 +80,7 @@ while True:
             # If a match was found in known_face_encodings, just use the first one.
             if True in matches:
                 first_match_index = matches.index(True)
-                name = str(first_match_index)
+                name = known_face_names[first_match_index]
 
             face_names.append(name)
 

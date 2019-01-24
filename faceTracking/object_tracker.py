@@ -2,13 +2,15 @@
 # python object_tracker.py --prototxt deploy.prototxt --model res10_300x300_ssd_iter_140000.caffemodel
 
 # import the necessary packages
-from pyimagesearch.centroidtracker import CentroidTracker
-from imutils.video import VideoStream
+
 import numpy as np
 import argparse
 import imutils
 import time
 import cv2
+
+from pyimagesearch.centroidtracker import CentroidTracker
+from imutils.video import VideoStream
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -37,7 +39,7 @@ time.sleep(2.0)
 while True:
 	# read the next frame from the video stream and resize it
 	frame = vs.read()
-	frame = imutils.resize(frame, width=400)
+	frame = imutils.resize(frame, width=800)
 
 	# if the frame dimensions are None, grab them
 	if W is None or H is None:
