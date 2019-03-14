@@ -1,5 +1,0 @@
-Run this code to execute your code after you have all the installed libraries (numpy,scipy,imutils,OpenCV):
-
-
-python object_tracker.py --prototxt deploy.prototxt \
-	--model res10_300x300_ssd_iter_140000.caffemodel

@@ -3,6 +3,9 @@ import face_recognition
 import cv2
 import os
 import glob
+import webbrowser
+url = './payment.html'
+
 
 # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
 # other example, but it includes some basic performance tweaks to make things run a lot faster:
@@ -88,6 +91,7 @@ while True:
                 name = known_face_names[first_match_index]
 		print(name)
                 os.remove('/home/jaspreet/Desktop/EasyBills/images/'+name+'.jpg')
+                webbrowser.open(url, new=2)  # open in new tab
 		print ("********* PAYMENT RECEIVED ********* \n  ID destroyed :"+ str(name))
 	        release()
 
