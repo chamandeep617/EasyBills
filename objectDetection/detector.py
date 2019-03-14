@@ -148,15 +148,19 @@ with detection_graph.as_default():
           [boxes, scores, classes, num_detections],
           feed_dict={image_tensor: image_np_expanded})
       # Visualization of the results of a detection.
-      print(classes)
+      #print(scores.item(0))
+      #print(classes.item(0))
+      # dont make box for persons only for bottle
+      #if not((scores.item(0))>.50 and (classes.item(0)==1)):
+      #if(classes.item(0)==44):
       vis_util.visualize_boxes_and_labels_on_image_array(
-          image_np,
-          np.squeeze(boxes),
-          np.squeeze(classes).astype(np.int32),
-          np.squeeze(scores),
-          category_index,
-          use_normalized_coordinates=True,
-          line_thickness=8)
+            image_np,
+            np.squeeze(boxes),
+            np.squeeze(classes).astype(np.int32),
+            np.squeeze(scores),
+            category_index,
+            use_normalized_coordinates=True,
+            line_thickness=8)
 #      plt.figure(figsize=IMAGE_SIZE)
 #      plt.imshow(image_np)
       #cv2.imshow('image',cv2.resize(image_np,(1280,960)))
