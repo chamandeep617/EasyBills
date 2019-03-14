@@ -161,6 +161,8 @@ with detection_graph.as_default():
             category_index,
             use_normalized_coordinates=True,
             line_thickness=8)
+      if(classes.item(0)==44):
+        print("ID0's cart contains bottle weighing 70 grams")
 #      plt.figure(figsize=IMAGE_SIZE)
 #      plt.imshow(image_np)
       #cv2.imshow('image',cv2.resize(image_np,(1280,960)))
