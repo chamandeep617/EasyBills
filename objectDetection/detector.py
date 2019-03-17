@@ -163,6 +163,8 @@ with detection_graph.as_default():
             line_thickness=8)
       if(classes.item(0)==44):
         print("ID0's cart contains bottle weighing 70 grams")
+      if(classes.item(0)==77):
+        print("ID1's cart contains Samsung mobile weighing 570 grams")  
 #      plt.figure(figsize=IMAGE_SIZE)
 #      plt.imshow(image_np)
       #cv2.imshow('image',cv2.resize(image_np,(1280,960)))

@@ -92,7 +92,7 @@ while True:
 		print(name)
                 os.remove('/home/jaspreet/Desktop/EasyBills/images/'+name+'.jpg')
                 webbrowser.open(url, new=2)  # open in new tab
-		print ("********* PAYMENT RECEIVED ********* \n  ID destroyed :"+ str(name))
+		print ("********* PAYMENT PORTAL STARTED ********* \n  ID destroyed :"+ str(name))
 	        release()
 
             face_names.append(name)
